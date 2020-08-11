@@ -1,0 +1,82 @@
+<Html>
+    <title>
+        Airline Reservation System
+    </title>
+    <head>
+        <h1>
+            Airline Reservation System
+        </h1>
+    </head>
+    <style>
+       ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            }
+
+            li {
+            float: right;
+            }
+
+            li a {
+            display: block;
+            padding: 8px;
+            background-color: #dddddd;
+            }
+            h1,div{
+               padding-left :30%
+            }
+    </style>
+    <body>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="./admin.html">Admin</a></li>
+            <li><a href="./user.html">User</a></li>
+            </ul>
+        <div>
+            
+           
+            <form action="./FlightSelect.html">
+            <table>
+                <tr>
+                    <td>
+                        One-Way<input type="radio"/>
+                    </td>
+                    <td>
+                        Round-Trip<input type="radio"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type= "text" placeholder="From"/></td>
+                    <td><input type= "text" placeholder="To"/></td>
+                </tr>
+                <tr>
+
+                    <td>Departure Date</td>
+                    <td>Return Date</td>
+                </tr>
+                <tr>
+
+                    <td><input type= "date" ></td>
+                    <td><input type= "date"/></td>
+                </tr>
+                <tr>
+                    <td><input type= "number" placeholder="Passengers"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button>Search Flight</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+            
+            
+            
+        </div>
+       
+        
+        
+    </body>
+</Html>

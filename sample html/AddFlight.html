@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+
+}
+
+.topnav a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+</style>
+
+<body>
+  <div class="topnav">
+    <a href="./EnableFlight.html"> Enable Flight |</a>&nbsp;&nbsp;
+    <a href="./DisableFlight.html">Disable Flight |</a>&nbsp;&nbsp;
+    <a href="./AddFlight.html">Add Flight |</a>&nbsp;&nbsp;
+    <a href="./Edit_Trip.html">Edit trip |</a>&nbsp;&nbsp;
+    <a href="./AddTrip.html">Add trip |</a>&nbsp;&nbsp;
+    <a href="#about">Search |</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="./flightsearch.html">Logout </a>&nbsp;&nbsp;
+  </div><br/>
+  <br/>
+  
+<div>
+
+<h2>Add flight details</h2>
+
+<form style="padding: 2%;">
+  <label for="fnum">Flight Number:</label><br>
+  <input type="text"><br>
+  <label for="from">From</label><br>
+  <input type="text"><br>
+  <label for="to">TO</label><br>
+  <input type="text"><br>
+  <div>
+    <label for="Cabin Type">Cabin type</label><br>
+    <input type="checkbox" id="Monday">
+    <label for="type"> Economy class</label><br>
+    <input type="checkbox" id="Monday">
+    <label for="type"> Buisiness class</label><br>
+    <input type="checkbox" id="Monday">
+    <label for="type"> First Class</label><br>
+  </div>
+  
+  <div>
+    <p>Flight Days</p>
+    <form>
+        <input type="checkbox" id="Monday">
+        <label for="Monday"> Monday</label><br>
+        <input type="checkbox" id="Monday">
+        <label for="Monday"> Tuesday</label><br>
+        <input type="checkbox" id="Monday">
+        <label for="Monday"> Wednesday</label><br>
+        <input type="checkbox" id="Monday">
+        <label for="Monday"> Thursday</label><br>
+        <input type="checkbox" id="Monday">
+        <label for="Monday"> Friday</label><br>
+        <input type="checkbox" id="Monday">
+        <label for="Monday"> Saturday</label><br>
+        <input type="checkbox" id="Monday">
+        <label for="Monday"> Sunday</label><br>
+
+      </form>
+      
+  </div>
+  
+  <button type="button">Add Flight</button>
+</form> 
+
+
+</body>
+</html>
