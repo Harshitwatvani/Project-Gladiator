@@ -1,0 +1,22 @@
+<div class="topnav">
+    <a href="./FlightSelect.html">Home</a>&nbsp;&nbsp;
+    
+    <a href="#about">About Us</a>&nbsp;&nbsp;
+    <a href="./flightsearch.html">Logout</a>&nbsp;&nbsp;
+</div>
+<h3>Your Details</h3>
+  <div>
+Flight Name: <br/>
+Departure Airport:<br/>
+Destination Airport:<br/>
+Departure time:<br/>
+Arrival Time:<br/>
+  </div><br/><br/>
+  <div *ngFor="let passenger of passengers">
+    Seat Number:<br/>  
+    Passenger Name:<br/>
+      Gender:<br/>
+
+  </div>
+  <button style="margin: 10px;" class="btn btn-primary">Confirm</button>
+  <button class="btn btn-info">Edit</button>
