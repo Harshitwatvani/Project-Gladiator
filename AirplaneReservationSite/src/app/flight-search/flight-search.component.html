@@ -1,0 +1,53 @@
+<div>
+    <nav class=topnav data-top="0" data-scroll="0">
+        <h4>
+            FlyHigh!!
+        </h4>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="./admin.html">Admin</a></li>
+            <li><a href="./user.html">User</a></li>
+        </ul>
+        
+    </nav>
+</div>
+
+
+<div>
+    <form>
+       <table>
+           <tr>
+                <td>One-Way<input type="radio" name="trips"/> </td>
+                <td>Round-Trip<input type="radio" name="trips"/></td>
+            </tr>
+            <br/>
+            <tr>
+                <td>
+                    <input type="text" placeholder="From" formControlName= "frompoint" class="form-control" required>
+                </td>
+                <td>
+                    <input type="text" placeholder="To" formControlName= "topoint" class="form-control" required>
+                </td>
+            </tr>
+            <br/>
+           
+            <tr>
+                <td>
+                    <input type="date" placeholder="Departure Date" formControlName= "deptdate" class="form-control" required>
+                </td>
+                <td>
+                    <input type="date" placeholder="Return Date" formControlName= "returndate" class="form-control" required>
+                </td>
+            </tr>
+            <br/>
+            <tr>
+                <td><input type= "number" placeholder="Passengers"/></td>
+                <td>
+                    <button>Search Flight</button>
+                </td>
+            </tr>
+       </table>
+        
+        
+    </form>
+</div>
