@@ -1,0 +1,13 @@
+.mainDiv{
+    display:flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.childDiv{
+    padding-bottom: 2%;
+}
+
+.buttonWidth{
+    width: 25%;
+}
