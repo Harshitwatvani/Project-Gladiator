@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="projectGladitorModelStoreContainer" CdmEntityContainer="projectGladitorEntities">
+    <EntitySetMapping Name="tbl_Airports">
+      <EntityTypeMapping TypeName="projectGladitorModel.tbl_Airports">
+        <MappingFragment StoreEntitySet="tbl_Airports">
+          <ScalarProperty Name="IATA_code" ColumnName="IATA_code" />
+          <ScalarProperty Name="ICAO_code" ColumnName="ICAO_code" />
+          <ScalarProperty Name="airport_name" ColumnName="airport_name" />
+          <ScalarProperty Name="city_name" ColumnName="city_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="proc_AirportCities" FunctionName="projectGladitorModel.Store.proc_AirportCities" />
+    <EntitySetMapping Name="tbl_AircraftDetails">
+      <EntityTypeMapping TypeName="projectGladitorModel.tbl_AircraftDetails">
+        <MappingFragment StoreEntitySet="tbl_AircraftDetails">
+          <ScalarProperty Name="Column_no" ColumnName="Column_no" />
+          <ScalarProperty Name="CabinType" ColumnName="CabinType" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="Airplane_no" ColumnName="Airplane_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_FlightDetails">
+      <EntityTypeMapping TypeName="projectGladitorModel.tbl_FlightDetails">
+        <MappingFragment StoreEntitySet="tbl_FlightDetails">
+          <ScalarProperty Name="FlightStatus" ColumnName="FlightStatus" />
+          <ScalarProperty Name="FirstClassFair" ColumnName="FirstClassFair" />
+          <ScalarProperty Name="BusinessClassFair" ColumnName="BusinessClassFair" />
+          <ScalarProperty Name="EconomyClassFair" ColumnName="EconomyClassFair" />
+          <ScalarProperty Name="CabinType" ColumnName="CabinType" />
+          <ScalarProperty Name="ArrivalPoint" ColumnName="ArrivalPoint" />
+          <ScalarProperty Name="DeparturePoint" ColumnName="DeparturePoint" />
+          <ScalarProperty Name="TravelDays" ColumnName="TravelDays" />
+          <ScalarProperty Name="FlightId" ColumnName="FlightId" />
+          <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAdmins">
+      <EntityTypeMapping TypeName="projectGladitorModel.tblAdmin">
+        <MappingFragment StoreEntitySet="tblAdmin">
+          <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="PreFix" ColumnName="PreFix" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBookings">
+      <EntityTypeMapping TypeName="projectGladitorModel.tblBooking">
+        <MappingFragment StoreEntitySet="tblBookings">
+          <ScalarProperty Name="Booking_Status" ColumnName="Booking Status" />
+          <ScalarProperty Name="Booking_Date" ColumnName="Booking_Date" />
+          <ScalarProperty Name="BID" ColumnName="BID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="prefix" ColumnName="prefix" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblpassenger_table">
+      <EntityTypeMapping TypeName="projectGladitorModel.tblpassenger_table">
+        <MappingFragment StoreEntitySet="tblpassenger_table">
+          <ScalarProperty Name="SeatID" ColumnName="SeatID" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="PName" ColumnName="PName" />
+          <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+          <ScalarProperty Name="PassengerID" ColumnName="PassengerID" />
+          <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPayments">
+      <EntityTypeMapping TypeName="projectGladitorModel.tblPayment">
+        <MappingFragment StoreEntitySet="tblPayments">
+          <ScalarProperty Name="Bid" ColumnName="Bid" />
+          <ScalarProperty Name="Payment_date" ColumnName="Payment date" />
+          <ScalarProperty Name="Payment_Status" ColumnName="Payment Status" />
+          <ScalarProperty Name="Payment_Amount" ColumnName="Payment Amount" />
+          <ScalarProperty Name="Payment_ID" ColumnName="Payment_ID" />
+          <ScalarProperty Name="prefix" ColumnName="prefix" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSeats">
+      <EntityTypeMapping TypeName="projectGladitorModel.tblSeat">
+        <MappingFragment StoreEntitySet="tblSeats">
+          <ScalarProperty Name="SeatType" ColumnName="SeatType" />
+          <ScalarProperty Name="Airplane_No" ColumnName="Airplane_No" />
+          <ScalarProperty Name="SeatID" ColumnName="SeatID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTicket_table">
+      <EntityTypeMapping TypeName="projectGladitorModel.tblTicket_table">
+        <MappingFragment StoreEntitySet="tblTicket_table">
+          <ScalarProperty Name="TicketStatus" ColumnName="TicketStatus" />
+          <ScalarProperty Name="TripID" ColumnName="TripID" />
+          <ScalarProperty Name="BID" ColumnName="BID" />
+          <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+          <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTrips">
+      <EntityTypeMapping TypeName="projectGladitorModel.tblTrip">
+        <MappingFragment StoreEntitySet="tblTrips">
+          <ScalarProperty Name="Arrival_Time" ColumnName="Arrival_Time" />
+          <ScalarProperty Name="Departure_Time" ColumnName="Departure_Time" />
+          <ScalarProperty Name="TripDate" ColumnName="TripDate" />
+          <ScalarProperty Name="Airplane_No" ColumnName="Airplane_No" />
+          <ScalarProperty Name="FlightID" ColumnName="FlightID" />
+          <ScalarProperty Name="TripID" ColumnName="TripID" />
+          <ScalarProperty Name="prefix" ColumnName="prefix" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="projectGladitorModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="PreFix" ColumnName="PreFix" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="proc_FlightSelect" FunctionName="projectGladitorModel.Store.proc_FlightSelect">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="projectGladitorModel.proc_FlightSelect_Result">
+          <ScalarProperty Name="Airplane_no" ColumnName="Airplane_no" />
+          <ScalarProperty Name="TripID" ColumnName="TripID" />
+          <ScalarProperty Name="Departure_Time" ColumnName="Departure_Time" />
+          <ScalarProperty Name="Arrival_Time" ColumnName="Arrival_Time" />
+          <ScalarProperty Name="EconomyClassFair" ColumnName="EconomyClassFair" />
+          <ScalarProperty Name="BusinessClassFair" ColumnName="BusinessClassFair" />
+          <ScalarProperty Name="FirstClassFair" ColumnName="FirstClassFair" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_Booking" FunctionName="projectGladitorModel.Store.proc_Booking" />
+    <FunctionImportMapping FunctionImportName="proc_TicketBook" FunctionName="projectGladitorModel.Store.proc_TicketBook" />
+    <FunctionImportMapping FunctionImportName="proc_GetBooking" FunctionName="projectGladitorModel.Store.proc_GetBooking" />
+    <FunctionImportMapping FunctionImportName="proc_GetBookings" FunctionName="projectGladitorModel.Store.proc_GetBookings">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="projectGladitorModel.proc_GetBookings_Result">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="BID" ColumnName="BID" />
+          <ScalarProperty Name="Booking_Date" ColumnName="Booking_Date" />
+          <ScalarProperty Name="Booking_Status" ColumnName="Booking Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
