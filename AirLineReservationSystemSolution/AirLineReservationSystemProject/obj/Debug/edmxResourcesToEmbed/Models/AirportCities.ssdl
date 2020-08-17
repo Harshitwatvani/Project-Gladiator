@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="projectGladitorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_AircraftDetails">
+    <Key>
+      <PropertyRef Name="Airplane_no" />
+    </Key>
+    <Property Name="Airplane_no" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Capacity" Type="int" Nullable="false" />
+    <Property Name="CabinType" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Column_no" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Airports">
+    <Key>
+      <PropertyRef Name="IATA_code" />
+    </Key>
+    <Property Name="IATA_code" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="ICAO_code" Type="varchar" MaxLength="4" />
+    <Property Name="airport_name" Type="varchar" MaxLength="49" Nullable="false" />
+    <Property Name="city_name" Type="varchar" MaxLength="14" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_FlightDetails">
+    <Key>
+      <PropertyRef Name="FlightId" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Prefix" Type="varchar" MaxLength="20" />
+    <Property Name="FlightId" Type="varchar" MaxLength="40" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="TravelDays" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DeparturePoint" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ArrivalPoint" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CabinType" Type="char" MaxLength="10" />
+    <Property Name="EconomyClassFair" Type="nvarchar" MaxLength="10" />
+    <Property Name="BusinessClassFair" Type="nvarchar" MaxLength="10" />
+    <Property Name="FirstClassFair" Type="nvarchar" MaxLength="10" />
+    <Property Name="FlightStatus" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblAdmin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PreFix" Type="varchar" MaxLength="20" />
+    <Property Name="AdminID" Type="varchar" MaxLength="40" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="30" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Passwords" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblBookings">
+    <Key>
+      <PropertyRef Name="BID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="prefix" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserID" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="BID" Type="varchar" MaxLength="40" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="Booking_Date" Type="datetime" Nullable="false" />
+    <Property Name="Booking Status" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblpassenger_table">
+    <Key>
+      <PropertyRef Name="PassengerID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Prefix" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PassengerID" Type="varchar" MaxLength="40" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="TicketID" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="PName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Gender" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="SeatID" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tblPayments">
+    <Key>
+      <PropertyRef Name="Payment_ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="prefix" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Payment_ID" Type="varchar" MaxLength="40" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="Payment Amount" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Payment Status" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Payment date" Type="datetime" />
+    <Property Name="Bid" Type="varchar" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="tblSeats">
+    <Key>
+      <PropertyRef Name="SeatID" />
+      <PropertyRef Name="Airplane_No" />
+    </Key>
+    <Property Name="SeatID" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Airplane_No" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="SeatType" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblTicket_table">
+    <Key>
+      <PropertyRef Name="TicketID" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Prefix" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TicketID" Type="varchar" MaxLength="40" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="BID" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="TripID" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="TicketStatus" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="tblTrips">
+    <Key>
+      <PropertyRef Name="TripID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="prefix" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TripID" Type="varchar" MaxLength="40" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="FlightID" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Airplane_No" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="TripDate" Type="date" Nullable="false" />
+    <Property Name="Departure_Time" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Arrival_Time" Type="time" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PreFix" Type="varchar" MaxLength="20" />
+    <Property Name="UserID" Type="varchar" MaxLength="40" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="20" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="30" />
+    <Property Name="DOB" Type="date" Nullable="false" />
+    <Property Name="PhoneNo" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__tblBookin__UserI__693CA210">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblBookings" Type="Self.tblBookings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblBookings">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblpassen__Ticke__656C112C">
+    <End Role="tblTicket_table" Type="Self.tblTicket_table" Multiplicity="1" />
+    <End Role="tblpassenger_table" Type="Self.tblpassenger_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTicket_table">
+        <PropertyRef Name="TicketID" />
+      </Principal>
+      <Dependent Role="tblpassenger_table">
+        <PropertyRef Name="TicketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblSeats__Airpla__68487DD7">
+    <End Role="tbl_AircraftDetails" Type="Self.tbl_AircraftDetails" Multiplicity="1" />
+    <End Role="tblSeats" Type="Self.tblSeats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_AircraftDetails">
+        <PropertyRef Name="Airplane_no" />
+      </Principal>
+      <Dependent Role="tblSeats">
+        <PropertyRef Name="Airplane_No" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblTicket__TripI__6A30C649">
+    <End Role="tblTrips" Type="Self.tblTrips" Multiplicity="1" />
+    <End Role="tblTicket_table" Type="Self.tblTicket_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTrips">
+        <PropertyRef Name="TripID" />
+      </Principal>
+      <Dependent Role="tblTicket_table">
+        <PropertyRef Name="TripID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblTicket_t__BID__6477ECF3">
+    <End Role="tblBookings" Type="Self.tblBookings" Multiplicity="1" />
+    <End Role="tblTicket_table" Type="Self.tblTicket_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBookings">
+        <PropertyRef Name="BID" />
+      </Principal>
+      <Dependent Role="tblTicket_table">
+        <PropertyRef Name="BID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblTicket_t__BID__6B24EA82">
+    <End Role="tblBookings" Type="Self.tblBookings" Multiplicity="1" />
+    <End Role="tblTicket_table" Type="Self.tblTicket_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBookings">
+        <PropertyRef Name="BID" />
+      </Principal>
+      <Dependent Role="tblTicket_table">
+        <PropertyRef Name="BID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblTrips__Airpla__6754599E">
+    <End Role="tbl_AircraftDetails" Type="Self.tbl_AircraftDetails" Multiplicity="1" />
+    <End Role="tblTrips" Type="Self.tblTrips" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_AircraftDetails">
+        <PropertyRef Name="Airplane_no" />
+      </Principal>
+      <Dependent Role="tblTrips">
+        <PropertyRef Name="Airplane_No" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblTrips__Flight__66603565">
+    <End Role="tbl_FlightDetails" Type="Self.tbl_FlightDetails" Multiplicity="1" />
+    <End Role="tblTrips" Type="Self.tblTrips" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_FlightDetails">
+        <PropertyRef Name="FlightId" />
+      </Principal>
+      <Dependent Role="tblTrips">
+        <PropertyRef Name="FlightID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_Bid">
+    <End Role="tblBookings" Type="Self.tblBookings" Multiplicity="0..1" />
+    <End Role="tblPayments" Type="Self.tblPayments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBookings">
+        <PropertyRef Name="BID" />
+      </Principal>
+      <Dependent Role="tblPayments">
+        <PropertyRef Name="Bid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="proc_AirportCities" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="proc_Booking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_FlightSelect" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="from" Type="nvarchar" Mode="In" />
+    <Parameter Name="to" Type="nvarchar" Mode="In" />
+    <Parameter Name="deptdate" Type="date" Mode="In" />
+    <Parameter Name="returndate" Type="date" Mode="In" />
+    <Parameter Name="PassengerCount" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_GetBooking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_GetBookings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_TicketBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BID" Type="varchar" Mode="In" />
+    <Parameter Name="TripID" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="projectGladitorModelStoreContainer">
+    <EntitySet Name="tbl_AircraftDetails" EntityType="Self.tbl_AircraftDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Airports" EntityType="Self.tbl_Airports" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_FlightDetails" EntityType="Self.tbl_FlightDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblAdmin" EntityType="Self.tblAdmin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblBookings" EntityType="Self.tblBookings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblpassenger_table" EntityType="Self.tblpassenger_table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPayments" EntityType="Self.tblPayments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSeats" EntityType="Self.tblSeats" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTicket_table" EntityType="Self.tblTicket_table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTrips" EntityType="Self.tblTrips" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblBookin__UserI__693CA210" Association="Self.FK__tblBookin__UserI__693CA210">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblBookings" EntitySet="tblBookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblpassen__Ticke__656C112C" Association="Self.FK__tblpassen__Ticke__656C112C">
+      <End Role="tblTicket_table" EntitySet="tblTicket_table" />
+      <End Role="tblpassenger_table" EntitySet="tblpassenger_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblSeats__Airpla__68487DD7" Association="Self.FK__tblSeats__Airpla__68487DD7">
+      <End Role="tbl_AircraftDetails" EntitySet="tbl_AircraftDetails" />
+      <End Role="tblSeats" EntitySet="tblSeats" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblTicket__TripI__6A30C649" Association="Self.FK__tblTicket__TripI__6A30C649">
+      <End Role="tblTrips" EntitySet="tblTrips" />
+      <End Role="tblTicket_table" EntitySet="tblTicket_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblTicket_t__BID__6477ECF3" Association="Self.FK__tblTicket_t__BID__6477ECF3">
+      <End Role="tblBookings" EntitySet="tblBookings" />
+      <End Role="tblTicket_table" EntitySet="tblTicket_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblTicket_t__BID__6B24EA82" Association="Self.FK__tblTicket_t__BID__6B24EA82">
+      <End Role="tblBookings" EntitySet="tblBookings" />
+      <End Role="tblTicket_table" EntitySet="tblTicket_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblTrips__Airpla__6754599E" Association="Self.FK__tblTrips__Airpla__6754599E">
+      <End Role="tbl_AircraftDetails" EntitySet="tbl_AircraftDetails" />
+      <End Role="tblTrips" EntitySet="tblTrips" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblTrips__Flight__66603565" Association="Self.FK__tblTrips__Flight__66603565">
+      <End Role="tbl_FlightDetails" EntitySet="tbl_FlightDetails" />
+      <End Role="tblTrips" EntitySet="tblTrips" />
+    </AssociationSet>
+    <AssociationSet Name="pk_Bid" Association="Self.pk_Bid">
+      <End Role="tblBookings" EntitySet="tblBookings" />
+      <End Role="tblPayments" EntitySet="tblPayments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ccd665858862448f875df8714f69b288" Name="Diagram1">
+        <EntityTypeShape EntityType="projectGladitorModel.tbl_Airports" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="projectGladitorModel.tbl_AircraftDetails" Width="1.5" PointX="3.75" PointY="2.875" />
+        <EntityTypeShape EntityType="projectGladitorModel.tbl_FlightDetails" Width="1.5" PointX="6.75" PointY="7.25" />
+        <EntityTypeShape EntityType="projectGladitorModel.tblAdmin" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="projectGladitorModel.tblBooking" Width="1.5" PointX="9" PointY="11.5" />
+        <EntityTypeShape EntityType="projectGladitorModel.tblpassenger_table" Width="1.5" PointX="13.5" PointY="2.625" />
+        <EntityTypeShape EntityType="projectGladitorModel.tblPayment" Width="1.5" PointX="11.25" PointY="11.625" />
+        <EntityTypeShape EntityType="projectGladitorModel.tblSeat" Width="1.5" PointX="6" PointY="3" />
+        <EntityTypeShape EntityType="projectGladitorModel.tblTicket_table" Width="1.5" PointX="11.25" PointY="2.5" />
+        <EntityTypeShape EntityType="projectGladitorModel.tblTrip" Width="1.5" PointX="9" PointY="2.375" />
+        <EntityTypeShape EntityType="projectGladitorModel.tblUser" Width="1.5" PointX="6.75" PointY="11.375" />
+        <AssociationConnector Association="projectGladitorModel.FK__tblSeats__Airpla__68487DD7" />
+        <AssociationConnector Association="projectGladitorModel.FK__tblTrips__Airpla__6754599E" />
+        <AssociationConnector Association="projectGladitorModel.FK__tblTrips__Flight__66603565" />
+        <AssociationConnector Association="projectGladitorModel.FK__tblBookin__UserI__693CA210" />
+        <AssociationConnector Association="projectGladitorModel.FK__tblTicket_t__BID__6477ECF3" />
+        <AssociationConnector Association="projectGladitorModel.FK__tblTicket_t__BID__6B24EA82" />
+        <AssociationConnector Association="projectGladitorModel.pk_Bid" />
+        <AssociationConnector Association="projectGladitorModel.FK__tblpassen__Ticke__656C112C" />
+        <AssociationConnector Association="projectGladitorModel.FK__tblTicket__TripI__6A30C649" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

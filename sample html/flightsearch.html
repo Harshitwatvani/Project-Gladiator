@@ -48,8 +48,19 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><input type= "text" placeholder="From"/></td>
-                    <td><input type= "text" placeholder="To"/></td>
+                    <td><input type= "text" placeholder="From" matInput [formControl]="searchTerm" [matAutocomplete]="auto"/></td>
+                    <td><input type= "text" placeholder="To" matInput [formControl]="searchTerm" [matAutocomplete]="auto"/></td>
+                    <!-- <td>
+                        <p>
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let port of airportList" [value]="port.AirportName">
+                                  {{ port.AirportName}}
+                                </mat-option>
+                              </mat-autocomplete>
+                    
+                          </mat-form-field>
+                        </p>
+                    </td> -->
                 </tr>
                 <tr>
 

@@ -53,6 +53,7 @@ create table tblTicket_table
 	Phone_No nvarchar(20) not null
 )
 
+
 create table tblPayments
 (
 	ID int identity(1,1) not null,
@@ -147,6 +148,8 @@ add foreign key(Bid) references tblBookings(BID)
 
 alter table tblPayments add constraint pk_Bid Foreign Key(BID) references tblBookings(BID)
 
+ alter table tblTicket_table add TicketStatus nvarchar(15)
+
 ---------------------------------------------------------------
 
 ----- ADD User -------
@@ -165,19 +168,19 @@ Insert into tbl_AircraftDetails values('6E458', 60, 'EF', 6)
 
 Insert into tbl_FlightDetails
 (TravelDays, DeparturePoint, ArrivalPoint, CabinType, EconomyClassFair, BusinessClassFair, FirstClassFair, FlightStatus)
-values ('1010100', 'Agatti Island Airport', 'Ahmedabad Airport', 'EBF', '4000', '5000', '4500', 'Active')
+values ('1010100', 'Goa', 'Ahmedabad', 'EBF', '4000', '5000', '4500', 'Active')
 
 Insert into tbl_FlightDetails
 (TravelDays, DeparturePoint, ArrivalPoint, CabinType, EconomyClassFair, BusinessClassFair, FirstClassFair, FlightStatus)
-values ('1000000', 'Aizawl Airport', 'Akola Airport', 'EBF', '4000', '5000', '4500', 'Active')
+values ('1000000', 'Udaipur', 'Indore', 'EBF', '4000', '5000', '4500', 'Active')
 
 Insert into tbl_FlightDetails
 (TravelDays, DeparturePoint, ArrivalPoint, CabinType, EconomyClassFair, BusinessClassFair, FirstClassFair, FlightStatus)
-values ('1110000', 'Amausi Airport', 'Amritsar Airport', 'EBF', '5000', '7000', '5500', 'Active')
+values ('1110000', 'Amausi Airport', 'Dhanbad', 'EBF', '5000', '7000', '5500', 'Active')
 
 Insert into tbl_FlightDetails
 (TravelDays, DeparturePoint, ArrivalPoint, CabinType, EconomyClassFair, BusinessClassFair, FirstClassFair, FlightStatus)
-values ('0000011', 'Bajpe Airport', 'Balurghat Airport', 'EBF', '3000', '4800', '4200', 'Active')
+values ('0000011', 'kanpur', 'Jodhpur', 'EBF', '3000', '4800', '4200', 'Active')
 
 
 --- ADD TRIP Details ----- 
@@ -209,6 +212,10 @@ values ('F3', '6E454', '2020-08-12', '10:00', '14:00')
 Insert into tblTrips(FlightID, Airplane_No, TripDate, Departure_Time, Arrival_Time) 
 values ('F3', '6E454', '2020-08-14', '15:00', '18:00')
 
+Insert into tblTrips(FlightID, Airplane_No, TripDate, Departure_Time, Arrival_Time) 
+values ('F5', '6E456', '2020-08-10', '17:00', '19:00')
+
+
 
 ---- ADD Seats -----
 
@@ -239,6 +246,10 @@ values('Mr.', 'Kshitiz','Sharma','7014118553', 'kshitiz.sharma@lntinfotech.com',
 
 Insert into tblBookings(UserID, Booking_Date) values ('U1', GETDATE());
 
+
+
+select * from tblBookings
+
 --- ADD Payment ----
 
 Insert into tblPayments([Payment Amount], [Payment date], BID, [Payment Status]) values ('9600', GetDate(), 'B1', 'Confirmed')
@@ -248,7 +259,7 @@ Insert into tblPayments([Payment Amount], [Payment date], BID, [Payment Status])
 
 insert into tblTicket_table(BID, TripID, Phone_No) values ('B1', 'TR1', '1234567890')
 
-
+update tblTicket_table set TicketStatus='Confirmed' where TicketID = 'T1'
 
 ---- ADD Passenger -----
 
@@ -394,13 +405,162 @@ INSERT INTO tbl_Airports(IATA_code,ICAO_code,airport_name,city_name) VALUES ('ZE
 
 
 select * from tblUser
-select * from tbl_AircraftDetails
-select * from  tbl_FlightDetails
-select * from  tblTrips
+
+
 select * from  tblSeats
 select * from  tblBookings
 select * from tblPayments
+select * from  tblTrips
+select * from  tbl_FlightDetails
+select * from tbl_AircraftDetails
+
 select * from tblTicket_table
 select * from tblpassenger_table 
 
-select * from tbl_Airports
+select * from tbl_Airports order by airport_name 
+
+drop table tbl_FlightDetails
+drop table tbl_AircraftDetails
+
+
+
+-----prakhar---------------------
+
+create proc proc_FlightSelect(@from nvarchar(50),@to nvarchar(50),@deptdate date,@returndate date,@PassengerCount int)
+as
+	
+	Begin
+		select aircraft.Airplane_no ,tt.TripID ,tt.Departure_Time,tt.Arrival_Time,fd.EconomyClassFair,fd.BusinessClassFair,fd.FirstClassFair
+		from tbl_FlightDetails fd Inner Join tblTrips tt 
+		on fd.FlightId = tt.FlightId
+		Inner Join tbl_AircraftDetails aircraft on aircraft.Airplane_no=tt.Airplane_No
+		where fd.DeparturePoint=@from AND fd.ArrivalPoint=@to  AND  tt.TripDate=@deptdate
+		AND 
+		@PassengerCount<=(
+					select aircraft.Capacity-Count(pass.PassengerID) as [PassCount]
+					from tbl_AircraftDetails aircraft Inner Join tblTrips trips on aircraft.Airplane_no=trips.Airplane_No
+					Inner Join tblTicket_table tr on trips.TripID=tr.TripID Inner Join tblpassenger_table pass
+					on tr.TicketID =pass.TicketID 
+					where fd.DeparturePoint=@from AND fd.ArrivalPoint=@to  AND  tt.TripDate=@deptdate
+					group by aircraft.Capacity
+
+				)		
+		End
+
+
+		drop proc proc_FlightSelect
+
+	exec  proc_FlightSelect 'Jaipur','Warangal','2020-08-10','2020-08-10',29
+	exec  proc_FlightSelect 'Warangal','Jaipur','2020-08-10','2020-08-25',29
+
+
+	delete from tbl_FlightDetails
+
+	Insert into tbl_FlightDetails
+(TravelDays, DeparturePoint, ArrivalPoint, CabinType, EconomyClassFair, BusinessClassFair, FirstClassFair, FlightStatus)
+values ('1010100', 'Goa', 'Ahmedabad', 'EBF', '4000', '5000', '4500', 'Active')
+
+Insert into tbl_FlightDetails
+(TravelDays, DeparturePoint, ArrivalPoint, CabinType, EconomyClassFair, BusinessClassFair, FirstClassFair, FlightStatus)
+values ('1000000', 'Udaipur', 'Indore', 'EBF', '4000', '5000', '4500', 'Active')
+
+Insert into tbl_FlightDetails
+(TravelDays, DeparturePoint, ArrivalPoint, CabinType, EconomyClassFair, BusinessClassFair, FirstClassFair, FlightStatus)
+values ('1110000', 'Amausi Airport', 'Dhanbad', 'EBF', '5000', '7000', '5500', 'Active')
+
+Insert into tbl_FlightDetails
+(TravelDays, DeparturePoint, ArrivalPoint, CabinType, EconomyClassFair, BusinessClassFair, FirstClassFair, FlightStatus)
+values ('0000011', 'kanpur', 'Jodhpur', 'EBF', '3000', '4800', '4200', 'Active')
+
+Insert into tbl_FlightDetails
+(TravelDays, DeparturePoint, ArrivalPoint, CabinType, EconomyClassFair, BusinessClassFair, FirstClassFair, FlightStatus)
+values ('0001111', 'Jaipur', 'Warangal', 'EBF', '3000', '4800', '4200', 'Active')
+
+Insert into tbl_FlightDetails
+(TravelDays, DeparturePoint, ArrivalPoint, CabinType, EconomyClassFair, BusinessClassFair, FirstClassFair, FlightStatus)
+values ('0001111', 'Warangal', 'Jaipur', 'EBF', '3000', '4800', '4200', 'Active')
+
+Insert into tbl_FlightDetails
+(TravelDays, DeparturePoint, ArrivalPoint, CabinType, EconomyClassFair, BusinessClassFair, FirstClassFair, FlightStatus)
+values ('0001111', 'Warangal', 'Jaipur', 'EBF', '3000', '4800', '4200', 'Active')
+
+
+update tbl_FlightDetails set DeparturePoint='kanpur' where FlightId ='F4'
+update tbl_FlightDetails set ArrivalPoint='Jodhpur'where FlightId ='F4'
+
+update tbl_FlightDetails set DeparturePoint='Goa' where FlightId ='F3'
+update tbl_FlightDetails set ArrivalPoint='Ahemdabad'where FlightId ='F3'
+
+update tbl_FlightDetails set DeparturePoint='Amritsar' where FlightId ='F2'
+update tbl_FlightDetails set ArrivalPoint='Raipur'where FlightId ='F2'
+
+update tbl_FlightDetails set DeparturePoint='Jaipur' where FlightId ='F1'
+update tbl_FlightDetails set ArrivalPoint='Warangal'where FlightId ='F1'
+
+
+
+ alter table tblTicket_table add TicketStatus nvarchar(15)
+
+ 
+Insert into tblTrips(FlightID, Airplane_No, TripDate, Departure_Time, Arrival_Time) 
+values ('F5', '6E456', '2020-08-10', '17:00', '19:00')
+
+Insert into tblTrips(FlightID, Airplane_No, TripDate, Departure_Time, Arrival_Time) 
+values ('F6', '6E456', '2020-08-25', '19:00', '21:00')
+
+Insert into tblUser(Title, FirstName, LastName, DOB, PhoneNo, Email, Password) values('Mr', 'Prakhar', 'Nag', '1998-01-22', '7412588520', 'prakhar@gmail.com', '1234')
+
+insert into tblBookings(UserID) values('U2');
+
+update tblTicket_table set TicketStatus='Confirmed' where TicketID = 'T1'
+
+alter table tblTicket_table add constraint ticketstat DEFAULT 'Pending'  FOR TicketStatus 
+
+
+select * from tbl_FlightDetails
+
+select * from tblBookings
+select * from tblTicket_table
+
+
+insert into tblTicket_table(BID, TripID) values ('B4', 'TR3')
+
+--delete from tblTicket_table where Id=3 
+
+
+
+create proc proc_Booking(@userID varchar(40))
+as
+Begin 
+	insert into tblBookings(UserID) values(@userID)
+End
+
+exec proc_Booking 'U2'
+select * from tblBookings
+
+create proc proc_GetBookings(@userID varchar(40))
+as
+Begin
+	select TOP 1 UserID ,BID,Booking_Date,[Booking Status] from tblBookings where UserID=@userID order by Booking_Date desc 
+End
+
+exec proc_GetBookings 'U1'
+
+create proc proc_TicketBook(@BID varchar(40),@TripID varchar(40))
+as
+Begin
+	insert into tblTicket_table(BID,TripID) values(@BID,@TripID)
+End
+
+exec proc_TicketBook 'B5','TR7'
+
+
+select * from  tblTrips
+select * from  tblBookings
+select * from tblTicket_table
+
+delete from tblTicket_table where BID='B4'
+
+
+
+

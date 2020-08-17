@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="projectGladitorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_Airports">
+    <Key>
+      <PropertyRef Name="IATA_code" />
+    </Key>
+    <Property Name="IATA_code" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ICAO_code" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="airport_name" Type="String" MaxLength="49" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="city_name" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="projectGladitorEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_Airports" EntityType="Self.tbl_Airports" />
+    <FunctionImport Name="proc_AirportCities" ReturnType="Collection(String)" />
+    <EntitySet Name="tbl_AircraftDetails" EntityType="projectGladitorModel.tbl_AircraftDetails" />
+    <EntitySet Name="tbl_FlightDetails" EntityType="projectGladitorModel.tbl_FlightDetails" />
+    <EntitySet Name="tblAdmins" EntityType="projectGladitorModel.tblAdmin" />
+    <EntitySet Name="tblBookings" EntityType="projectGladitorModel.tblBooking" />
+    <EntitySet Name="tblpassenger_table" EntityType="projectGladitorModel.tblpassenger_table" />
+    <EntitySet Name="tblPayments" EntityType="projectGladitorModel.tblPayment" />
+    <EntitySet Name="tblSeats" EntityType="projectGladitorModel.tblSeat" />
+    <EntitySet Name="tblTicket_table" EntityType="projectGladitorModel.tblTicket_table" />
+    <EntitySet Name="tblTrips" EntityType="projectGladitorModel.tblTrip" />
+    <EntitySet Name="tblUsers" EntityType="projectGladitorModel.tblUser" />
+    <AssociationSet Name="FK__tblSeats__Airpla__68487DD7" Association="projectGladitorModel.FK__tblSeats__Airpla__68487DD7">
+      <End Role="tbl_AircraftDetails" EntitySet="tbl_AircraftDetails" />
+      <End Role="tblSeat" EntitySet="tblSeats" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblTrips__Airpla__6754599E" Association="projectGladitorModel.FK__tblTrips__Airpla__6754599E">
+      <End Role="tbl_AircraftDetails" EntitySet="tbl_AircraftDetails" />
+      <End Role="tblTrip" EntitySet="tblTrips" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblTrips__Flight__66603565" Association="projectGladitorModel.FK__tblTrips__Flight__66603565">
+      <End Role="tbl_FlightDetails" EntitySet="tbl_FlightDetails" />
+      <End Role="tblTrip" EntitySet="tblTrips" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblBookin__UserI__693CA210" Association="projectGladitorModel.FK__tblBookin__UserI__693CA210">
+      <End Role="tblUser" EntitySet="tblUsers" />
+      <End Role="tblBooking" EntitySet="tblBookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblTicket_t__BID__6477ECF3" Association="projectGladitorModel.FK__tblTicket_t__BID__6477ECF3">
+      <End Role="tblBooking" EntitySet="tblBookings" />
+      <End Role="tblTicket_table" EntitySet="tblTicket_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblTicket_t__BID__6B24EA82" Association="projectGladitorModel.FK__tblTicket_t__BID__6B24EA82">
+      <End Role="tblBooking" EntitySet="tblBookings" />
+      <End Role="tblTicket_table" EntitySet="tblTicket_table" />
+    </AssociationSet>
+    <AssociationSet Name="pk_Bid" Association="projectGladitorModel.pk_Bid">
+      <End Role="tblBooking" EntitySet="tblBookings" />
+      <End Role="tblPayment" EntitySet="tblPayments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblpassen__Ticke__656C112C" Association="projectGladitorModel.FK__tblpassen__Ticke__656C112C">
+      <End Role="tblTicket_table" EntitySet="tblTicket_table" />
+      <End Role="tblpassenger_table" EntitySet="tblpassenger_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblTicket__TripI__6A30C649" Association="projectGladitorModel.FK__tblTicket__TripI__6A30C649">
+      <End Role="tblTrip" EntitySet="tblTrips" />
+      <End Role="tblTicket_table" EntitySet="tblTicket_table" />
+    </AssociationSet>
+    <FunctionImport Name="proc_FlightSelect" ReturnType="Collection(projectGladitorModel.proc_FlightSelect_Result)">
+      <Parameter Name="from" Mode="In" Type="String" />
+      <Parameter Name="to" Mode="In" Type="String" />
+      <Parameter Name="deptdate" Mode="In" Type="DateTime" />
+      <Parameter Name="returndate" Mode="In" Type="DateTime" />
+      <Parameter Name="PassengerCount" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_Booking">
+      <Parameter Name="userID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_TicketBook">
+      <Parameter Name="BID" Mode="In" Type="String" />
+      <Parameter Name="TripID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetBooking" ReturnType="Collection(String)">
+      <Parameter Name="userID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="proc_GetBookings" ReturnType="Collection(projectGladitorModel.proc_GetBookings_Result)">
+      <Parameter Name="userID" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="tbl_AircraftDetails">
+    <Key>
+      <PropertyRef Name="Airplane_no" />
+    </Key>
+    <Property Name="Airplane_no" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Capacity" Type="Int32" Nullable="false" />
+    <Property Name="CabinType" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="Column_no" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblSeats" Relationship="projectGladitorModel.FK__tblSeats__Airpla__68487DD7" FromRole="tbl_AircraftDetails" ToRole="tblSeat" />
+    <NavigationProperty Name="tblTrips" Relationship="projectGladitorModel.FK__tblTrips__Airpla__6754599E" FromRole="tbl_AircraftDetails" ToRole="tblTrip" />
+  </EntityType>
+  <EntityType Name="tbl_FlightDetails">
+    <Key>
+      <PropertyRef Name="FlightId" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Prefix" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FlightId" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="TravelDays" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DeparturePoint" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ArrivalPoint" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CabinType" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="EconomyClassFair" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="BusinessClassFair" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="FirstClassFair" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="FlightStatus" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblTrips" Relationship="projectGladitorModel.FK__tblTrips__Flight__66603565" FromRole="tbl_FlightDetails" ToRole="tblTrip" />
+  </EntityType>
+  <EntityType Name="tblAdmin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PreFix" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="AdminID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Passwords" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblBooking">
+    <Key>
+      <PropertyRef Name="BID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="prefix" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="BID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Booking_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Booking_Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblUser" Relationship="projectGladitorModel.FK__tblBookin__UserI__693CA210" FromRole="tblBooking" ToRole="tblUser" />
+    <NavigationProperty Name="tblTicket_table" Relationship="projectGladitorModel.FK__tblTicket_t__BID__6477ECF3" FromRole="tblBooking" ToRole="tblTicket_table" />
+    <NavigationProperty Name="tblTicket_table1" Relationship="projectGladitorModel.FK__tblTicket_t__BID__6B24EA82" FromRole="tblBooking" ToRole="tblTicket_table" />
+    <NavigationProperty Name="tblPayments" Relationship="projectGladitorModel.pk_Bid" FromRole="tblBooking" ToRole="tblPayment" />
+  </EntityType>
+  <EntityType Name="tblpassenger_table">
+    <Key>
+      <PropertyRef Name="PassengerID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Prefix" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PassengerID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="TicketID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="PName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="SeatID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblTicket_table" Relationship="projectGladitorModel.FK__tblpassen__Ticke__656C112C" FromRole="tblpassenger_table" ToRole="tblTicket_table" />
+  </EntityType>
+  <EntityType Name="tblPayment">
+    <Key>
+      <PropertyRef Name="Payment_ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="prefix" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Payment_ID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Payment_Amount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Payment_Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Payment_date" Type="DateTime" Precision="3" />
+    <Property Name="Bid" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblBooking" Relationship="projectGladitorModel.pk_Bid" FromRole="tblPayment" ToRole="tblBooking" />
+  </EntityType>
+  <EntityType Name="tblSeat">
+    <Key>
+      <PropertyRef Name="SeatID" />
+      <PropertyRef Name="Airplane_No" />
+    </Key>
+    <Property Name="SeatID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Airplane_No" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="SeatType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbl_AircraftDetails" Relationship="projectGladitorModel.FK__tblSeats__Airpla__68487DD7" FromRole="tblSeat" ToRole="tbl_AircraftDetails" />
+  </EntityType>
+  <EntityType Name="tblTicket_table">
+    <Key>
+      <PropertyRef Name="TicketID" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Prefix" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TicketID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="BID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="TripID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblBooking" Relationship="projectGladitorModel.FK__tblTicket_t__BID__6477ECF3" FromRole="tblTicket_table" ToRole="tblBooking" />
+    <NavigationProperty Name="tblBooking1" Relationship="projectGladitorModel.FK__tblTicket_t__BID__6B24EA82" FromRole="tblTicket_table" ToRole="tblBooking" />
+    <NavigationProperty Name="tblpassenger_table" Relationship="projectGladitorModel.FK__tblpassen__Ticke__656C112C" FromRole="tblTicket_table" ToRole="tblpassenger_table" />
+    <NavigationProperty Name="tblTrip" Relationship="projectGladitorModel.FK__tblTicket__TripI__6A30C649" FromRole="tblTicket_table" ToRole="tblTrip" />
+    <Property Name="TicketStatus" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblTrip">
+    <Key>
+      <PropertyRef Name="TripID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="prefix" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TripID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="FlightID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Airplane_No" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="TripDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Departure_Time" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Arrival_Time" Type="Time" Nullable="false" Precision="7" />
+    <NavigationProperty Name="tbl_AircraftDetails" Relationship="projectGladitorModel.FK__tblTrips__Airpla__6754599E" FromRole="tblTrip" ToRole="tbl_AircraftDetails" />
+    <NavigationProperty Name="tbl_FlightDetails" Relationship="projectGladitorModel.FK__tblTrips__Flight__66603565" FromRole="tblTrip" ToRole="tbl_FlightDetails" />
+    <NavigationProperty Name="tblTicket_table" Relationship="projectGladitorModel.FK__tblTicket__TripI__6A30C649" FromRole="tblTrip" ToRole="tblTicket_table" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PreFix" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="Title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PhoneNo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblBookings" Relationship="projectGladitorModel.FK__tblBookin__UserI__693CA210" FromRole="tblUser" ToRole="tblBooking" />
+  </EntityType>
+  <Association Name="FK__tblSeats__Airpla__68487DD7">
+    <End Type="projectGladitorModel.tbl_AircraftDetails" Role="tbl_AircraftDetails" Multiplicity="1" />
+    <End Type="projectGladitorModel.tblSeat" Role="tblSeat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_AircraftDetails">
+        <PropertyRef Name="Airplane_no" />
+      </Principal>
+      <Dependent Role="tblSeat">
+        <PropertyRef Name="Airplane_No" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblTrips__Airpla__6754599E">
+    <End Type="projectGladitorModel.tbl_AircraftDetails" Role="tbl_AircraftDetails" Multiplicity="1" />
+    <End Type="projectGladitorModel.tblTrip" Role="tblTrip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_AircraftDetails">
+        <PropertyRef Name="Airplane_no" />
+      </Principal>
+      <Dependent Role="tblTrip">
+        <PropertyRef Name="Airplane_No" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblTrips__Flight__66603565">
+    <End Type="projectGladitorModel.tbl_FlightDetails" Role="tbl_FlightDetails" Multiplicity="1" />
+    <End Type="projectGladitorModel.tblTrip" Role="tblTrip" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_FlightDetails">
+        <PropertyRef Name="FlightId" />
+      </Principal>
+      <Dependent Role="tblTrip">
+        <PropertyRef Name="FlightID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblBookin__UserI__693CA210">
+    <End Type="projectGladitorModel.tblUser" Role="tblUser" Multiplicity="1" />
+    <End Type="projectGladitorModel.tblBooking" Role="tblBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblBooking">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblTicket_t__BID__6477ECF3">
+    <End Type="projectGladitorModel.tblBooking" Role="tblBooking" Multiplicity="1" />
+    <End Type="projectGladitorModel.tblTicket_table" Role="tblTicket_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBooking">
+        <PropertyRef Name="BID" />
+      </Principal>
+      <Dependent Role="tblTicket_table">
+        <PropertyRef Name="BID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblTicket_t__BID__6B24EA82">
+    <End Type="projectGladitorModel.tblBooking" Role="tblBooking" Multiplicity="1" />
+    <End Type="projectGladitorModel.tblTicket_table" Role="tblTicket_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBooking">
+        <PropertyRef Name="BID" />
+      </Principal>
+      <Dependent Role="tblTicket_table">
+        <PropertyRef Name="BID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pk_Bid">
+    <End Type="projectGladitorModel.tblBooking" Role="tblBooking" Multiplicity="0..1" />
+    <End Type="projectGladitorModel.tblPayment" Role="tblPayment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBooking">
+        <PropertyRef Name="BID" />
+      </Principal>
+      <Dependent Role="tblPayment">
+        <PropertyRef Name="Bid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblpassen__Ticke__656C112C">
+    <End Type="projectGladitorModel.tblTicket_table" Role="tblTicket_table" Multiplicity="1" />
+    <End Type="projectGladitorModel.tblpassenger_table" Role="tblpassenger_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTicket_table">
+        <PropertyRef Name="TicketID" />
+      </Principal>
+      <Dependent Role="tblpassenger_table">
+        <PropertyRef Name="TicketID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblTicket__TripI__6A30C649">
+    <End Type="projectGladitorModel.tblTrip" Role="tblTrip" Multiplicity="1" />
+    <End Type="projectGladitorModel.tblTicket_table" Role="tblTicket_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblTrip">
+        <PropertyRef Name="TripID" />
+      </Principal>
+      <Dependent Role="tblTicket_table">
+        <PropertyRef Name="TripID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="proc_FlightSelect_Result">
+    <Property Type="String" Name="Airplane_no" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="TripID" Nullable="true" MaxLength="40" />
+    <Property Type="Time" Name="Departure_Time" Nullable="false" />
+    <Property Type="Time" Name="Arrival_Time" Nullable="false" />
+    <Property Type="String" Name="EconomyClassFair" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="BusinessClassFair" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="FirstClassFair" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="proc_GetBookings_Result">
+    <Property Type="String" Name="UserID" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="BID" Nullable="true" MaxLength="40" />
+    <Property Type="DateTime" Name="Booking_Date" Nullable="false" Precision="23" />
+    <Property Type="String" Name="Booking_Status" Nullable="false" MaxLength="20" />
+  </ComplexType>
+</Schema>
