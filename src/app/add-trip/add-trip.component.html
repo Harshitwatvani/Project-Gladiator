@@ -1,0 +1,45 @@
+<div class="mainDiv">
+    <div class="childDiv">
+        <span>Flight ID</span>
+        <select class="form-control" #flight (change)="insertDetailInfo(flight.value)">
+            <option></option>
+            <option *ngFor="let item of data | keyvalue" [value]="data[item.key].FlightID">{{data[item.key].FlightID}}</option>
+        </select>
+    </div>
+    <div class="childDiv">
+        <span>Airplane No. </span>
+        <select class="form-control" #plane (change) = "insertPlane(plane.value)">
+            <option></option>
+            <option *ngFor="let item of planes" [value]="item">{{item}}</option>
+        </select>
+    </div>
+    <div *ngIf="selected.length > 0">
+        <div class="childDiv">
+            <span>Trip Date</span>
+            <input type= "date" class="form-control" #trip (change) = "addTripDate(trip.value)"> 
+        </div>
+        <div class="childDiv">
+            <span>From</span>
+            <input disabled [value]="flights[selected].from?flights[selected].from:''"/>
+        </div>
+        <div class="childDiv">
+            <span>To</span>
+            <input disabled [value]="flights[selected].to?flights[selected].to:''"/>
+        </div>
+        <div class="childDiv">
+            <span>Departure Time </span>
+            <input type="time" id="exampleInput" name="input" #dept (change)="addDept(dept.value)" placeholder="HH:mm:ss" required />
+        </div>
+        <div class="childDiv">
+            <span>Arrival Time</span>
+            <input type="time" id="exampleInput" name="input" #arrival (change)="addArrivalTime(arrival.value)" placeholder="HH:mm:ss" required />
+        </div>
+        <div class="childDiv">
+            <span>Duration</span>
+            <input type= "text" class="form-control" disabled value="2:00:00">
+        </div>
+        <button class="btn btn-primary buttonWidth" (click) = "show()">
+            Add Trip
+        </button>
+    </div>
+</div>
