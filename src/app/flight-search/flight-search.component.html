@@ -1,20 +1,21 @@
-<div>
-    <nav class=topnav data-top="0" data-scroll="0">
-        <h4>
-            FlyHigh!!
-        </h4>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="./admin.html">Admin</a></li>
-            <li><a href="./user.html">User</a></li>
-        </ul>
-        
-    </nav>
-</div>
+<html>
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body> 
 
 
-<div class="formGroup ">
-    <form [formGroup]="myForm" class="border border-light form p-3 mb-2 bg-light text-dark">
+<div class="formclass" >
+<form class="form-horizontal" >
+
+<div class="form-row align-items-center" >
+    <form [formGroup]="myForm" class="border border-light form p-3 mb-2 bg-light text-dark" >
        <table>
            <tr>
                 <td>One-Way<input type="radio" name="trips" value="oneWay" (click)="trip('oneWay')" /> </td>
@@ -90,6 +91,8 @@
        </table>  
 	 </form>
 </div>
+    
+</form>
 <br/><br/><br/>
 
 <div *ngIf="oneWayFlag">
@@ -167,6 +170,9 @@
 <div *ngIf="oneWayFlag">
 		<button class="btn btn-primary"  (click)="book()">Book</button>
 </div>
+</div>
+</body>
+</html>
 
 
 
@@ -181,17 +187,3 @@
 
 
 
-
-
-
-
-
-<!-- 
- <td>
-                    <p *ngIf="flag">
-                        <td *ngFor="let list of airport">
-                            {{list}}
-                            
-                        </td>
-                    </p>
-                </td> -->

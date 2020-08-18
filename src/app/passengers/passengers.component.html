@@ -1,6 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+  
+</style>
+<body>
 
 <p><b>Add New Passengers!!</b></p>
-<div class="InsertPassengers">
+<div class="InsertPassengers" >
 <div >{{passenger.PName}}
     <div class="form-group">
         <label> Seat :{{seat}}  </label><br>
@@ -14,14 +28,24 @@
         <span  class="alert alert-danger" *ngIf="a">Enter age </span>
       </div>
     
+
       <label for="PassengerGender">Gender</label><br/>
-      <div >
-          <input type="radio" id="seat" name="gender" [(ngModel)]="gender" value="male">
-          <label for="male">Male</label><br>
-          <input type="radio" id=" seat" name="gender" [(ngModel)]="gender" value="female">
-          <label for="female">Female</label><br>
-          <input type="radio" id=" seat" name="gender" [(ngModel)]="gender" value="other">
-          <label for="other">Other</label>
+      <div class="form-check" >
+        <div>
+          <input class="form-check-input" type="radio" id="seat" name="gender" [(ngModel)]="gender" value="male">
+          <label class="form-check-label" for="male" style="padding: 5px;">Male</label>
+        </div> 
+        <div>
+          <input class="form-check-input" type="radio" id=" seat" name="gender" [(ngModel)]="gender" value="female">
+          <label class="form-check-label" for="female">Female</label>
+        </div> 
+        <div>
+          <input class="form-check-input" type="radio" id=" seat" name="gender" [(ngModel)]="gender" value="other">
+          <label class="form-check-label" for="other">Other</label>
+        </div> 
+        
+          
+         
       </div>
       <span  class="alert alert-danger" *ngIf="g">Enter gender </span>
 
@@ -32,10 +56,13 @@
         </div>
       </div> -->
   <!-- </form> -->
-  <button (click)="fetchPassengers()">Show previous Passengers</button>
-<div class="table-responsive" style="width: 70%; margin: auto;">
+  <div style="margin:auto">
+    <button class="btn btn-primary" (click)="fetchPassengers()">Show previous Passengers</button>
+  </div>
+
+<div class="table-responsive" style="width: 70%; margin: auto; padding: 5%;">
     <table class="table" >
-        <thead>
+        <thead class="thead-dark">
             <tr>
                 <th>#</th>
                 <th>Passenger Name</th>
@@ -47,7 +74,7 @@
             <tbody>
                 <tr *ngFor="let p of passengers">
                     <div class="form-group form-check">
-                        <button (click)="exist(p)">Add this</button> 
+                        <button class="btn btn-primary" (click)="exist(p)">Add this</button> 
                         <!-- <input type="radio" name="pas" #qwe [value="p"]>
                         <label >Add</label><br>      -->
                     </div>   
@@ -76,5 +103,14 @@
 
 <br><br><hr style="border: solid;"> 
 
+</body>
+</html>
 
 
+<!-- 
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+  <label class="form-check-label" for="exampleRadios1">
+    Default radio
+  </label>
+</div> -->

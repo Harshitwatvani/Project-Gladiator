@@ -1,65 +1,33 @@
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-	height:100%;
-  }
+body{
+  text-align: center;
+}
   
-  .topnav {
-    overflow: hidden;
-    background-color: #333;
-  
+  .formclass{
+    height: 100%;
+    width: 70%;
+    margin: auto;
+    display: inline-block;
+    padding: 5%;
   }
-  h4{
-      float:left;
-      color: #f2f2f2;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-      font-size: 17px;
-  }
-  .topnav a{
-    /* float: right; */
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  .topnav a.active {
-    background-color: #4CAF50;
-    color: white;
-  }
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    }
 
-    li {
-    float: right;
-    }
-
-    li a {
-    display: block;
-    padding: 8px;
-    /* background-color: #dddddd; */
-    }  
 	
-	
-.formGroup{
-	height: 100%;
+/* .formGroup{
+	  height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-	margin-top:5%;
-}
+  margin-top:5%;
+  background-color: aqua;
+} */
+
+
 /* .form{ */
 	/* border-color:  */
 /* } */
+
+@media (max-width: 830px) {
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

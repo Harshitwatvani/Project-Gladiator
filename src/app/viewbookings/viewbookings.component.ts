@@ -18,25 +18,24 @@ export class ViewbookingsComponent implements OnInit {
   constructor(private viewbooking:ViewbookingService) {
     this.b=new Booking();
     this.bids= [];
-  
-  
-   }
-   fetchBookings()
-   {
-     this.viewbooking.getBookings(this.id).subscribe((data)=>{
-       this.bookings= data;
-       this.b=this.bookings[0];
-       for (let i=0; i<this.bookings.length; i++)
-       {
-        //  if (this.bids((b)=>b.BID!=this.bookings[i].Bid))
-        //  {
-        //   this.bids.Add
-        //  }
+    
+    this.viewbooking.getBookings(this.id).subscribe((data)=>{
+      this.bookings= data;
+      this.b=this.bookings[0];
+      for (let i=0; i<this.bookings.length; i++)
+      {
+       //  if (this.bids((b)=>b.BID!=this.bookings[i].Bid))
+       //  {
+       //   this.bids.Add
+       //  }
 
-       }
-     } 
-     )
+      }
+    } 
+    )
    }
+  //  fetchBookings()
+  //  {
+  //  }
 
   ngOnInit(): void {
   }
